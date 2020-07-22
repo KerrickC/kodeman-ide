@@ -32,6 +32,7 @@ function App() {
   const defaultCode = {
     c: `#include<stdio.h>
 int main(int argc, char* argv[]) {
+  //prints input string!
   printf("%s\\n", argv[1]);
   return 0;
 }`,
@@ -78,6 +79,7 @@ int main(int argc, char* argv[]) {
             <textarea
               type="text"
               id="input"
+              placeholder="Ex: cat"
               onChange={onInputChange}
             ></textarea>
           </div>
