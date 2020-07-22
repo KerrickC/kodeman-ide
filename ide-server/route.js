@@ -44,6 +44,10 @@ const cExecute = async (data, input) => {
   }
 };
 
+//cppExecute
+//pyExecute
+//javaExecute
+
 //route --------------------------------------------------
 router.post("/submit", async (req, res) => {
   const { code, input, lang } = req.body;
