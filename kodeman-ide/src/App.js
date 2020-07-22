@@ -31,15 +31,26 @@ function App() {
 
   const defaultCode = {
     c: `#include<stdio.h>
+
 int main(int argc, char* argv[]) {
-  //prints input string!
   printf("%s\\n", argv[1]);
   return 0;
 }`,
-    cpp: "",
-    python: "",
-    java: "",
+    cpp: `#include <iostream>
+
+int main() {
+  std::cout << "Hello World!";
+  return 0;
+}`,
+    python: `print('Hello, world!')`,
+    java: `class HelloWorld {
+  public static void main(String[] args) {
+      System.out.println("Hello, World!"); 
+  }
+}`,
   };
+
+  const [defaultCodeType, setDefaultCodeType] = useState(defaultCode.c);
 
   const onCodeChange = (e) => {
     setCode(e.target.value);
@@ -47,6 +58,23 @@ int main(int argc, char* argv[]) {
 
   const onLangChange = (e) => {
     setLang(e.target.value);
+
+    switch (
+      lang //!NOT CHANGING
+    ) {
+      case "c":
+        setDefaultCodeType(defaultCode.c);
+        break;
+      case "c++":
+        setDefaultCodeType(defaultCode.cpp);
+        break;
+      case "java":
+        setDefaultCodeType(defaultCode.java);
+        break;
+      case "python":
+        setDefaultCodeType(defaultCode.python);
+        break;
+    }
   };
 
   const onInputChange = (e) => {
@@ -68,7 +96,6 @@ int main(int argc, char* argv[]) {
             <textarea
               type="text"
               id="code"
-              defaultValue={defaultCode.c}
               placeholder="CODE"
               onChange={onCodeChange}
               spellCheck="false"
