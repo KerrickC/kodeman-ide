@@ -3,7 +3,7 @@ import "./App.css";
 const axios = require("axios");
 
 function App() {
-  const [lang, setLang] = useState("c++");
+  const [lang, setLang] = useState("c");
   const [result, setResult] = useState("Submit code to see result.");
   const [code, setCode] = useState(""); //maybe add conditional hello world
   const [input, setInput] = useState("");
@@ -29,12 +29,16 @@ function App() {
       });
   };
 
-  const defaultCode = `#include<stdio.h>
-
+  const defaultCode = {
+    c: `#include<stdio.h>
 int main(int argc, char* argv[]) {
   printf("%s\\n", argv[1]);
   return 0;
-}`;
+}`,
+    cpp: "",
+    python: "",
+    java: "",
+  };
 
   const onCodeChange = (e) => {
     setCode(e.target.value);
@@ -54,8 +58,8 @@ int main(int argc, char* argv[]) {
         <div className="row">
           <div className="col-12 mt-5">
             <select id="lang" value={lang} onChange={onLangChange}>
-              <option value="c++">C++</option>
               <option value="c">C</option>
+              <option value="c++">C++</option>
               <option value="java">Java</option>
               <option value="python">Python</option>
             </select>
@@ -63,7 +67,7 @@ int main(int argc, char* argv[]) {
             <textarea
               type="text"
               id="code"
-              defaultValue={defaultCode}
+              defaultValue={defaultCode.c}
               placeholder="CODE"
               onChange={onCodeChange}
               spellCheck="false"
